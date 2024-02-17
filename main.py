@@ -21,15 +21,7 @@ df.birthwgt_lb.value_counts().sort_index()
 df.loc[df.birthwgt_lb == 15.0, 'birthwgt_lb'] = np.nan
 df.birthwgt_lb.value_counts().sort_index()
 # %%
-from pprint import pprint
-
-d1 = collections.defaultdict(list)
-for index, caseid in df.caseid.items():
-    d1[caseid].append(index)
-pprint(d1)
-# %%
-d1[10229]
-df.outcome[d1[10229]]
+df.query('caseid == 10229')[['caseid', 'row_number', 'outcome']]
 # %%
 from pathlib import Path
 Path('plots').mkdir(parents=True, exist_ok=True)
